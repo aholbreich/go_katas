@@ -29,6 +29,6 @@ func TestFindPerfectNumbersEfficient(t *testing.T) {
 		big.NewInt(33550336),
 	}
 	if !reflect.DeepEqual(result, expected) {
-		t.Errorf("findPerfectNumbers(%d) = %v, expected %v", 1, result, expected)
+		t.Errorf("FindPerfectNumbersEfficient(%d) = %v, expected %v", 1, result, expected)
 	}
 }
