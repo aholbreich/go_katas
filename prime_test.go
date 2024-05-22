@@ -8,10 +8,36 @@ import (
 	"testing"
 )
 
-func TestIsPrime(t *testing.T) {
-	result := IsPrime(0)
-	expected := false
-	if result != expected {
-		t.Errorf("IsPrime(0) = %t; want %t", result, expected)
+func runIsPrimeTests(t *testing.T, testFunc func(int) bool) {
+	tests := []struct {
+		input    int
+		expected bool
+	}{
+		{0, false},
+		{1, false},
+		{2, true},
+		{3, true},
+		{4, false},
+		{5, true},
+		{7, true},
+		{8, false},
+		{71, true},
+		{941, true},
+		{1000, false},
+		{7919, true},
 	}
+	for _, test := range tests {
+		result := testFunc(test.input)
+		if result != test.expected {
+			t.Errorf("IsPrime(%d) = %t; want %t", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestIsPrime(t *testing.T) {
+	runIsPrimeTests(t, IsPrime)
+}
+
+func TestIsPrimeUsingMathLib(t *testing.T) {
+	runIsPrimeTests(t, IsPrimeWithMathLib)
 }

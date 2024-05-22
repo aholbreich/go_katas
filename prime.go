@@ -1,6 +1,9 @@
 package go_kata
 
-import "math"
+import (
+	"math"
+	"math/big"
+)
 
 func IsPrime(n int) bool {
 	// Handle edge cases
@@ -23,4 +26,20 @@ func IsPrime(n int) bool {
 		}
 	}
 	return true
+}
+
+func IsPrimeWithMathLib(n int) bool {
+	// Handle edge cases
+	if n <= 1 {
+		return false
+	}
+	if n == 2 {
+		return true
+	}
+
+	// Convert n to big.Int
+	bigN := big.NewInt(int64(n))
+
+	// Use IsProbablePrime method from math/big package
+	return bigN.ProbablyPrime(0)
 }
