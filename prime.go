@@ -35,3 +35,12 @@ func IsPrimeWithMathLib(n int) bool {
 	bigN := big.NewInt(int64(n))
 	return bigN.ProbablyPrime(0)
 }
+
+// Returns the next prime number that is greater than n.
+func GetPrimeThatIsGreaterThan(n int) int {
+	for i := n + 1; ; i++ {
+		if IsPrime(i) {
+			return i
+		}
+	}
+}

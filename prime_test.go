@@ -41,3 +41,30 @@ func TestIsPrime(t *testing.T) {
 func TestIsPrimeUsingMathLib(t *testing.T) {
 	runIsPrimeTests(t, IsPrimeWithMathLib)
 }
+
+func TestGetPrimeThatIsGreaterThan(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected int
+	}{
+		{0, 2},
+		{1, 2},
+		{2, 3},
+		{3, 5},
+		{4, 5},
+		{5, 7},
+		{7, 11},
+		{8, 11},
+		{71, 73},
+		{941, 947},
+		{1000, 1009},
+		{7919, 7927},
+		{1000000000000000000, 1000000000000000003},
+	}
+	for _, test := range tests {
+		result := GetPrimeThatIsGreaterThan(test.input)
+		if result != test.expected {
+			t.Errorf("GetPrimeThatIsGreaterThan(%d) = %d; want %d", test.input, result, test.expected)
+		}
+	}
+}
