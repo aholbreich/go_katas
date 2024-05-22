@@ -5,6 +5,7 @@ import (
 	"math/big"
 )
 
+// Just a test implementation of the function that checks if a number is prime.
 func IsPrime(n int) bool {
 	// Handle edge cases
 	if n <= 1 {
@@ -28,18 +29,9 @@ func IsPrime(n int) bool {
 	return true
 }
 
+// Just a test implementation of the function that checks if a number is prime using the math library.
 func IsPrimeWithMathLib(n int) bool {
-	// Handle edge cases
-	if n <= 1 {
-		return false
-	}
-	if n == 2 {
-		return true
-	}
 
-	// Convert n to big.Int
 	bigN := big.NewInt(int64(n))
-
-	// Use IsProbablePrime method from math/big package
 	return bigN.ProbablyPrime(0)
 }
