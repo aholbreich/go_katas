@@ -9,5 +9,10 @@ Browse and learn. Feel free to fork, to provide improvements or comments.
 To run tests use:
 
 ```
-go test
+go test -v ./...
+```
+Check coverage with
+
+```
+go test -cover ./...
 ```

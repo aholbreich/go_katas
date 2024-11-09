@@ -20,13 +20,16 @@ func TestFindPerfectNumbers(t *testing.T) {
 
 func TestFindPerfectNumbersEfficient(t *testing.T) {
 
-	result := FindPerfectNumbersEfficient(5)
+	result := FindPerfectNumbersEfficient(8)
 	expected := []*big.Int{
 		big.NewInt(6),
 		big.NewInt(28),
 		big.NewInt(496),
 		big.NewInt(8128),
 		big.NewInt(33550336),
+		big.NewInt(8589869056),
+		big.NewInt(137438691328),
+		big.NewInt(2305843008139952128),
 	}
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("FindPerfectNumbersEfficient(%d) = %v, expected %v", 1, result, expected)
