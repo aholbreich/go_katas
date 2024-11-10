@@ -14,6 +14,7 @@ In effect every iteration "bubbles" the largest unsorted element to its correct 
 Complexity for all cases is of O(n^2). Not efficient, not recommended for usage for large datasets.
 */
 func BubbleSort(arr []int) {
+
 	n := len(arr)
 	for i := 0; i < n-1; i++ {
 		swapped := false
