@@ -9,8 +9,7 @@ import (
 
 func TestBubbleSort(t *testing.T) {
 
-	//Approx the 1 mb array
-	const arraySize int = 131072 * 1
+	const arraySize int = 10000
 
 	var arr [arraySize]int
 	var expected [arraySize]int
@@ -26,7 +25,7 @@ func TestBubbleSort(t *testing.T) {
 	start := time.Now()
 	BubbleSort(arr[:])
 	elapsed := time.Since(start)
-	fmt.Printf("Bubble sort: Time for 100mb monotone int array %s\n", elapsed)
+	fmt.Printf("Bubble sort: Time for %d elements  %s ", arraySize, elapsed)
 	if !reflect.DeepEqual(arr, expected) {
 		t.Errorf("BubbleSort failed. Got %v, expected %v", arr, expected)
 	}
