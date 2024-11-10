@@ -1,4 +1,4 @@
-# go_katas
+# My go_katas
 
 Some Golang katas for practice and example.
 
