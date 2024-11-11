@@ -24,6 +24,21 @@ func TestIdiomaticQuickSort(t *testing.T) {
 	}
 }
 
+func TestConcurrentQuickSort(t *testing.T) {
+
+	testArray := getSamples(false)
+	expected := getSamples(true)
+
+	start := time.Now()
+	var result = ConcurrentQuickSort(testArray)
+	elapsed := time.Since(start)
+
+	fmt.Printf("ConcurrentQuickSort: Time for %d elements  %s ", arraySize, elapsed)
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("ConcurrentQuickSort failed. Got %v, expected %v", result, expected)
+	}
+}
+
 // samples helper
 func getSamples(increasing bool) []int {
 	result := make([]int, arraySize)

@@ -11,6 +11,8 @@ Complexity of O(n log n) and a worst-case complexity of O(n^2).
 */
 package sorting
 
+import "sync"
+
 // Idiomatic implementation, uses slices. Turns out to have best performance!
 func IdiomaticQuickSort(arr []int) []int {
 	if len(arr) < 2 {
@@ -31,4 +33,42 @@ func IdiomaticQuickSort(arr []int) []int {
 		}
 	}
 	return append(IdiomaticQuickSort(right), IdiomaticQuickSort(left)...)
+}
+
+// TODO, too much overhead in this implementation.
+func ConcurrentQuickSort(arr []int) []int {
+	if len(arr) < 2 {
+		return arr
+	}
+
+	pivot := arr[len(arr)/2]
+
+	var left, right []int
+	for _, element := range arr {
+		if element <= pivot {
+			right = append(right, element)
+		} else {
+			left = append(left, element)
+		}
+	}
+
+	var leftSorted, rightSorted []int
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		leftSorted = ConcurrentQuickSort(left)
+	}()
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		rightSorted = ConcurrentQuickSort(right)
+	}()
+
+	wg.Wait() //blocks here util counter is back to 0
+
+	// Concatenate leftSorted, pivot, and rightSorted
+	return append(rightSorted, leftSorted...)
 }
